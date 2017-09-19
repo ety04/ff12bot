@@ -18,6 +18,6 @@
   "author": "Ety",
   "license": "LGPL-3.0",
   "dependencies": {
-    "twitch-bot.js": "^1.0.8"
+    "twitch-bot": "^1.0.8"
 	}
 }
