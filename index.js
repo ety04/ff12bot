@@ -64,7 +64,7 @@ bot.on("message", function(channel, userstate, message, self, username) {
   
   // Isolate what follows the "!" without spaces
   let word = message.slice(1).split(" ");
-  let commandName = word.shift().toLowerCase();
+  let commandName = word.shift();
 
   if(commandName === "Kappa") {
 	console.log("Kappa found!");
