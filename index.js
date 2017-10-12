@@ -58,6 +58,7 @@ bot.on("message", function(channel, userstate, message, self, username) {
 
 // If first character is not "!", don't bother
   if(self || message[0] !== "!") {
+	  console.log("Command not beginning with '!'")
       return;
   }
   
@@ -66,6 +67,7 @@ bot.on("message", function(channel, userstate, message, self, username) {
   let commandName = word.shift().toLowerCase();
 
   if(commandName === "Kappa") {
+	console.log("Kappa found!");
     bot.say(channel, "Keepo");
   }
 });
