@@ -53,6 +53,9 @@ var options = {
 var bot = new tmi.client(options);
 
 
+// Connect the client to the server.
+bot.connect();
+
 /** Kappa command */
 bot.on("message", function(channel, userstate, message, self, username) {
 
@@ -71,6 +74,3 @@ bot.on("message", function(channel, userstate, message, self, username) {
     bot.say(channel, "Keepo");
   }
 });
-
-// Connect the client to the server.
-bot.connect();
