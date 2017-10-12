@@ -66,8 +66,8 @@ function numChance(b_cnt)
 
 /** Command parsing */
 bot.on("message", function(channel, userstate, message, self, username) {
-
-	if(username !== bot.username)
+	var b_sender = ${message.tags.username};
+	if(b_sender !== bot.username)
 	{
 		// If first character is not "!", don't bother
 		  if(self || message[0] !== "!") {
@@ -93,7 +93,7 @@ bot.on("message", function(channel, userstate, message, self, username) {
 		   {
 				b_num_dmg = 1;
 				b_num_cnt = 1;
-				bot.say(channel, "It's a total failure! " + username + " broke the Numerology ! Back to the start... Kappa");
+				bot.say(channel, "It's a total failure! " + b_sender + " broke the Numerology ! Back to the start... Kappa");
 				return;
 			}
 			b_num_dmg *= 2;
