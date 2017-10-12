@@ -15,7 +15,8 @@
  var b_oauth_pass = "oauth:fs0o6z0s680coy78e3rbh6753v0vaw";
  var b_channel = "ety04";
  
- var b_horo_cnt = 1;
+ var b_num_cnt = 1;
+ var b_num_dmg = 1;
  
  /*
 const TwitchBot = require('twitch-bot')
@@ -54,33 +55,53 @@ var options = {
 
 var bot = new tmi.client(options);
 
+/** Recursively computing Numerology damage */
+function numChance(int b_cnt)
+{
+	if(b_cnt == 1)
+		return 0.85;
+	else
+		return numChance(b_cnt - 1) - (b_cnt/2);
+}
 
 /** Command parsing */
 bot.on("message", function(channel, userstate, message, self, username) {
 
-// If first character is not "!", don't bother
-  if(self || message[0] !== "!") {
-	  console.log("Command not beginning with '!'")
-      return;
-  }
-  
-  // Isolate what follows the "!" without spaces
-  let word = message.slice(1).split(" ");
-  let commandName = word.shift();
-  let commandLower = commandName.toLowerCase();
+	if(username.toLowerCase() !== "ff12bot")
+	{
+	// If first character is not "!", don't bother
+	  if(self || message[0] !== "!") {
+		  console.log("Command not beginning with '!'")
+		  return;
+	  }
+	  
+	  // Isolate what follows the "!" without spaces
+	  let word = message.slice(1).split(" ");
+	  let commandName = word.shift();
+	  let commandLower = commandName.toLowerCase();
 
-  if(commandName === "Kappa") {
-	console.log("Kappa found!");
-    bot.say(channel, "Keepo");
-  }
+	  if(commandName === "Kappa") {
+		console.log("Kappa found!");
+		bot.say(channel, "Keepo");
+	  }
+	  
+	  if(commandLower.substr(0,4) == "num")
+	  {
+		var newProbs = Math.random(); console.log("new prob: " + newProbs);
+		var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
+	   if(b_num_cnt > 16 || newProbs > currentBar)
+	   {
+			b_num_dmg = 0;
+			bot.say(channel, "It's a total failure! " + username + " broke the Numerology ! Back to the start... Kappa");
+			return;
+		}
+		b_num_dmg *= 2;
+		bot.say(channel, "Numerology damage is: " + b_num_dmg + " !\n (Attempt number " + b_num_cnt + ")");
+		b_num_cnt ++;
+	 }
+   } // END user is not ff12bot
   
-  if(commandLower.substr(0,4) == "horo")
-  {
-	b_horo_cnt *= 2;
-	bot.say(channel, "Horology damage is: " + b_horo_cnt + " !");
-  }
-  
-});
+}); // END function
 
 console.log("Before connection");
 
