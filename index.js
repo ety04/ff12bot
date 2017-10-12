@@ -66,7 +66,7 @@ function numChance(b_cnt)
 
 /** Command parsing */
 bot.on("message", function(channel, userstate, message, self, username) {
-	var b_sender = ${message.tags.username};
+	var b_sender = message.tags.username;
 	if(b_sender !== bot.username)
 	{
 		// If first character is not "!", don't bother
