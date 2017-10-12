@@ -52,5 +52,23 @@ var options = {
 
 var bot = new tmi.client(options);
 
-// Connect the client to the server..
+
+/** Kappa command */
+bot.on("message", function(channel, userstate, message, self, username) {
+
+// If first character is not "!", don't bother
+  if(self || message[0] !== "!") {
+      return;
+  }
+  
+  // Isolate what follows the "!" without spaces
+  let word = message.slice(1).split(" ");
+  let commandName = word.shift().toLowerCase();
+
+  if(commandName === "Kappa") {
+    bot.say(channel, "Keepo");
+  }
+});
+
+// Connect the client to the server.
 bot.connect();
