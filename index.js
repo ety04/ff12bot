@@ -85,7 +85,7 @@ bot.on("message", function(channel, userstate, message, self, username) {
 			bot.say(channel, "Keepo");
 		  }
 		  
-		  if(commandLower.substr(0,4) == "num")
+		  if(commandLower.substr(0,3) == "num")
 		  {
 			var newProbs = Math.random(); console.log("new prob: " + newProbs);
 			var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
