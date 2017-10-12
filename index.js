@@ -56,7 +56,7 @@ var options = {
 var bot = new tmi.client(options);
 
 /** Recursively computing Numerology damage */
-function numChance(int b_cnt)
+function numChance(var b_cnt)
 {
 	if(b_cnt == 1)
 		return 0.85;
@@ -91,7 +91,8 @@ bot.on("message", function(channel, userstate, message, self, username) {
 		var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
 	   if(b_num_cnt > 16 || newProbs > currentBar)
 	   {
-			b_num_dmg = 0;
+			b_num_dmg = 1;
+			b_num_cnt = 1;
 			bot.say(channel, "It's a total failure! " + username + " broke the Numerology ! Back to the start... Kappa");
 			return;
 		}
