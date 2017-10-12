@@ -13,11 +13,11 @@
 
 const TwitchBot = require('twitch-bot')
  
- var username = "FF12Bot";
- var oauth_pass = "oauth:fs0o6z0s680coy78e3rbh6753v0vaw";
- var channel = "ety04";
+ var b_username = "FF12Bot";
+ var b_oauth_pass = "oauth:fs0o6z0s680coy78e3rbh6753v0vaw";
+ var b_channel = "ety04";
  
- 
+ /*
 const Bot = new TwitchBot(username, oauth_pass, channel)
  
 Bot.on('join', () => {
@@ -32,3 +32,25 @@ Bot.on('join', () => {
 Bot.on('error', err => {
   console.log(err)
 })
+*/
+
+var tmi = require("tmi.js");
+
+var options = {
+    options: {
+        debug: true
+    },
+    connection: {
+        reconnect: true
+    },
+    identity: {
+        username: b_username,
+        password: b_oauth_pass
+    },
+    channels: ["#" + b_channel"]
+};
+
+var bot = new tmi.client(options);
+
+// Connect the client to the server..
+bot.connect();
