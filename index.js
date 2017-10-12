@@ -67,7 +67,7 @@ function numChance(b_cnt)
 /** Command parsing */
 bot.on("message", function(channel, userstate, message, self, username) {
 
-	if(username.toLowerCase() !== "ff12bot")
+	if(username !== bot.username)
 	{
 		// If first character is not "!", don't bother
 		  if(self || message[0] !== "!") {
