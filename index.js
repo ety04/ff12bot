@@ -47,7 +47,7 @@ var options = {
         username: b_username,
         password: b_oauth_pass
     },
-    channels: ["#" + b_channel"]
+    channels: ["#" + b_channel]
 };
 
 var bot = new tmi.client(options);
