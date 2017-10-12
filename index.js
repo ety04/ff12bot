@@ -15,6 +15,8 @@
  var b_oauth_pass = "oauth:fs0o6z0s680coy78e3rbh6753v0vaw";
  var b_channel = "ety04";
  
+ int b_horo_cnt = 1;
+ 
  /*
 const TwitchBot = require('twitch-bot')
 
@@ -53,7 +55,7 @@ var options = {
 var bot = new tmi.client(options);
 
 
-/** Kappa command */
+/** Command parsing */
 bot.on("message", function(channel, userstate, message, self, username) {
 
 // If first character is not "!", don't bother
@@ -65,11 +67,19 @@ bot.on("message", function(channel, userstate, message, self, username) {
   // Isolate what follows the "!" without spaces
   let word = message.slice(1).split(" ");
   let commandName = word.shift();
+  let commandLower = commandName.toLowerCase();
 
   if(commandName === "Kappa") {
 	console.log("Kappa found!");
     bot.say(channel, "Keepo");
   }
+  
+  if(commandLower.substr(0,4) == "horo")
+  {
+	b_horo_cnt *= 2;
+	bot.say(channel, "Horology damage is: " + b_horo_cnt + " !");
+  }
+  
 });
 
 console.log("Before connection");
