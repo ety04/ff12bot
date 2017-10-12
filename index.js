@@ -15,7 +15,7 @@
  var b_oauth_pass = "oauth:fs0o6z0s680coy78e3rbh6753v0vaw";
  var b_channel = "ety04";
  
- int b_horo_cnt = 1;
+ var b_horo_cnt = 1;
  
  /*
 const TwitchBot = require('twitch-bot')
