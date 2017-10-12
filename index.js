@@ -56,7 +56,7 @@ var options = {
 var bot = new tmi.client(options);
 
 /** Recursively computing Numerology damage */
-function numChance(var b_cnt)
+function numChance(b_cnt)
 {
 	if(b_cnt == 1)
 		return 0.85;
@@ -69,38 +69,38 @@ bot.on("message", function(channel, userstate, message, self, username) {
 
 	if(username.toLowerCase() !== "ff12bot")
 	{
-	// If first character is not "!", don't bother
-	  if(self || message[0] !== "!") {
-		  console.log("Command not beginning with '!'")
-		  return;
-	  }
-	  
-	  // Isolate what follows the "!" without spaces
-	  let word = message.slice(1).split(" ");
-	  let commandName = word.shift();
-	  let commandLower = commandName.toLowerCase();
+		// If first character is not "!", don't bother
+		  if(self || message[0] !== "!") {
+			  console.log("Command not beginning with '!'")
+			  return;
+		  }
+		  
+		  // Isolate what follows the "!" without spaces
+		  let word = message.slice(1).split(" ");
+		  let commandName = word.shift();
+		  let commandLower = commandName.toLowerCase();
 
-	  if(commandName === "Kappa") {
-		console.log("Kappa found!");
-		bot.say(channel, "Keepo");
-	  }
-	  
-	  if(commandLower.substr(0,4) == "num")
-	  {
-		var newProbs = Math.random(); console.log("new prob: " + newProbs);
-		var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
-	   if(b_num_cnt > 16 || newProbs > currentBar)
-	   {
-			b_num_dmg = 1;
-			b_num_cnt = 1;
-			bot.say(channel, "It's a total failure! " + username + " broke the Numerology ! Back to the start... Kappa");
-			return;
-		}
-		b_num_dmg *= 2;
-		bot.say(channel, "Numerology damage is: " + b_num_dmg + " !\n (Attempt number " + b_num_cnt + ")");
-		b_num_cnt ++;
-	 }
-   } // END user is not ff12bot
+		  if(commandName === "Kappa") {
+			console.log("Kappa found!");
+			bot.say(channel, "Keepo");
+		  }
+		  
+		  if(commandLower.substr(0,4) == "num")
+		  {
+			var newProbs = Math.random(); console.log("new prob: " + newProbs);
+			var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
+		   if(b_num_cnt > 16 || newProbs > currentBar)
+		   {
+				b_num_dmg = 1;
+				b_num_cnt = 1;
+				bot.say(channel, "It's a total failure! " + username + " broke the Numerology ! Back to the start... Kappa");
+				return;
+			}
+			b_num_dmg *= 2;
+			bot.say(channel, "Numerology damage is: " + b_num_dmg + " !\n (Attempt number " + b_num_cnt + ")");
+			b_num_cnt ++;
+		 }
+	} // END user is not ff12bot
   
 }); // END function
 
