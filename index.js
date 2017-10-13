@@ -65,12 +65,12 @@ function numChance(b_cnt)
 }
 
 /** Command parsing */
-bot.on("chat", function(channel, user, message) {
+bot.on("chat", function(channel, user, message, isSelf) {
 	var b_sender = user["display-name"];
 	if(b_sender.toLowerCase() !== b_username.toLowerCase())
 	{
 		// If first character is not "!", don't bother
-		  if(self || message[0] !== "!") {
+		  if(isSelf || message[0] !== "!") {
 			  console.log("Command not beginning with '!'")
 			  return;
 		  }
