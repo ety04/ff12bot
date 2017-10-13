@@ -59,7 +59,7 @@ var bot = new tmi.client(options);
 function numChance(b_cnt)
 {
 	if(b_cnt == 1)
-		return 0.85;
+		return 85;
 	else
 		return numChance(b_cnt - 1) - (b_cnt/2);
 }
@@ -88,7 +88,7 @@ bot.on("chat", function(channel, user, message, isSelf) {
 		  if(commandLower.substr(0,3) == "num")
 		  {
 			var newProbs = Math.random(); console.log("new prob: " + newProbs);
-			var currentBar = numChance(b_num_cnt); console.log("new bar: " + currentBar);
+			var currentBar = numChance(b_num_cnt)/100; console.log("new bar: " + currentBar);
 		   if(b_num_cnt > 16 || newProbs > currentBar)
 		   {
 				b_num_dmg = 1;
