@@ -91,12 +91,12 @@ bot.on("chat", function(channel, user, message, isSelf) {
 			var currentBar = numChance(b_num_cnt)/100; console.log("new bar: " + currentBar);
 		   if(b_num_cnt > 16 || newProbs > currentBar)
 		   {
-				b_num_dmg = 1;
+				b_num_dmg = 0;
 				b_num_cnt = 1;
 				bot.say(channel, "It's a total failure! " + b_sender + " broke the Numerology ! Back to the start... Kappa");
 				return;
 			}
-			b_num_dmg *= 2;
+			b_num_dmg = (b_num_cnt == 1)?1:b_num_dmg *2;
 			bot.say(channel, "Numerology damage is: " + b_num_dmg + " !\n (Attempt number " + b_num_cnt + ")");
 			b_num_cnt ++;
 		 }
